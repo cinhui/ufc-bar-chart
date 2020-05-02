@@ -6,8 +6,8 @@ const delayDuration = 1000;
 
 let sequenceArray = [];
 
-const title = "Number of Wins";
-const subTitle = "Subtitle";
+const title = "Most Number of Wins";
+const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Recorded since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
@@ -28,20 +28,25 @@ svg.append('text')
    .attr('class', 'title')
    .attr('y', 45)
    .html(title);
-// svg.append("text")
-//    .attr("class", "subTitle")
-//    .attr("y", 75)
-//    .html( subTitle );
+svg.append("text")
+   .attr("class", "subTitle")
+   .attr("y", 75)
+   .html( subTitle );
 svg.append("text")
    .attr("class", "caption")
    .attr("x", 10)
-   .attr('y', height-20)
+   .attr('y', height-28)
    .html("Sources: https://en.wikipedia.org/wiki/List_of_UFC_events");
 svg.append("text")
    .attr("class", "caption")
    .attr("x", 10+42)
-   .attr('y', height)
-   .html("https://www.ufc.com https://www.sherdog.com");
+   .attr('y', height-16)
+   .html("https://www.ufc.com");
+svg.append("text")
+   .attr("class", "caption")
+   .attr("x", 10+42)
+   .attr('y', height-4)
+   .html("https://www.sherdog.com");
 
 Promise.all([
    d3.csv("sequence.csv"),
@@ -80,13 +85,15 @@ Promise.all([
             let lastValue = lastValues[ name ];
             if( lastValue == null )
                lastValue = val;
-   
-            ret.push({
-                  name     : name,
-                  color   : d.color,
-                  value    : val,
-                  lastValue: lastValue
-            });
+            
+            if( val>-1){
+               ret.push({
+                     name     : name,
+                     color   : d.color,
+                     value    : val,
+                     lastValue: lastValue
+               });
+            }
             
          //    console.log(val)
             values[name] = val;
@@ -160,8 +167,9 @@ Promise.all([
          .append('text')
          .attr('class', 'valueLabel')
          .attr('x', d => x(d.value)+5)
-         .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+2)
-         .text(d => d.lastValue);
+         .attr('y', d => y(d.rank)+((y(1)-y(0))/2)+13)
+         .text(d => { if(d.lastValue > 0) {return d.lastValue} else { return "" }})
+
    
       let ticker = d3.interval(e => {
    
@@ -207,7 +215,7 @@ Promise.all([
             .duration(tickDuration)
             .ease(d3.easeLinear)
             .attr('width', d => Math.max(0, x(d.value)-x(0)))
-            .attr('y', d => y(max_value+1)+5)
+            .attr('y', d => y(max_value))
             .remove();
    
          const labels = svg.selectAll('.label')
@@ -240,7 +248,7 @@ Promise.all([
             .duration(tickDuration)
             .ease(d3.easeLinear)
             .attr('x', d => x(d.value)-8)
-            .attr('y', d => y(max_value+1)+5)
+            .attr('y', d => y(max_value)+5)
             .remove();
    
          const valueLabels = svg.selectAll('.valueLabel').data(sequenceValue, d => d.name);
@@ -250,20 +258,20 @@ Promise.all([
             .append('text')
             .attr('class', 'valueLabel')
             .attr('x', d => x(d.value)+5)
-            .attr('y', d => y(max_value+1)+5+((y(1)-y(0))/2)+2)
+            .attr('y', d => y(max_value+1)+((y(1)-y(0))/2)+13)
             .text(d => d.value)
             .transition()
             .duration(tickDuration)
             .ease(d3.easeLinear)
-            .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+2);
+            .attr('y', d => y(d.rank)+((y(1)-y(0))/2)+13);
    
          valueLabels
             .transition()
             .duration(tickDuration)
             .ease(d3.easeLinear)
-            .text(d => d.value)
+            .text(d => { if(d.value > 0) {return d.value} else { return "" }})
             .attr('x', d => x(d.value)+5)
-            .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+2)
+            .attr('y', d => y(d.rank)+((y(1)-y(0))/2)+13);
    
          valueLabels
             .exit()
@@ -271,7 +279,7 @@ Promise.all([
             .duration(tickDuration)
             .ease(d3.easeLinear)
             .attr('x', d => x(d.value)+5)
-            .attr('y', d => y(max_value+1)+5)
+            .attr('y', d => y(max_value)+5)
             .remove();
 
          sequence++;
