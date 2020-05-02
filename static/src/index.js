@@ -2,7 +2,7 @@ const height = 600;
 const width = 900;
 
 const tickDuration  = 700;
-const delayDuration = 1000;
+const delayDuration = 2000;
 
 let sequenceArray = [];
 
@@ -40,7 +40,7 @@ svg.append("text")
 svg.append("text")
    .attr("class", "caption")
    .attr("x", 10+42)
-   .attr('y', height-5)
+   .attr('y', height)
    .html("https://www.ufc.com https://www.sherdog.com");
 
 Promise.all([
@@ -53,13 +53,11 @@ Promise.all([
          sequenceArray.push(d.date_formatted)
       })
 
-      const sequenceStart     = 1;
+      const sequenceStart     = 0;
       const sequenceEnd       = sequenceArray.length;
       let sequence = sequenceStart;
 
       // console.log(sequenceArray)
-
-      // console.log(data[1])
 
       // Assign random colors to each fighter
       data[1].forEach( d => {
@@ -77,7 +75,7 @@ Promise.all([
             const txt  = d[sequence];
             let val  = 0;
             val = parseFloat(txt);
-            val = Math.round(val + 3);
+            val = Math.round(val);
    
             let lastValue = lastValues[ name ];
             if( lastValue == null )
@@ -133,7 +131,7 @@ Promise.all([
          .style('text-anchor', 'end');
       
       // console.log(sequenceValue)
-      dateText.html(sequenceArray[sequence-1]);
+      dateText.html(sequenceArray[sequence]);
 
       svg.selectAll('rect.bar')
          .data(sequenceValue, d => d.name)
@@ -161,12 +159,13 @@ Promise.all([
          .enter()
          .append('text')
          .attr('class', 'valueLabel')
-         .attr('x', d => x(d.lastValue)+5)
+         .attr('x', d => x(d.value)+5)
          .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+2)
          .text(d => d.lastValue);
    
       let ticker = d3.interval(e => {
    
+         dateText.html(sequenceArray[sequence]);
          d3.selectAll(".annotate").style('visibility', 'visible');
          
          sequenceValue = _normalizeData();
@@ -275,7 +274,6 @@ Promise.all([
             .attr('y', d => y(max_value+1)+5)
             .remove();
 
-         dateText.html(sequenceArray[sequence-1]);
          sequence++;
          if(sequence> sequenceEnd) ticker.stop();
       }, delayDuration);
