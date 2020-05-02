@@ -2,7 +2,7 @@ const height = 600;
 const width = 900;
 
 const tickDuration  = 700;
-const delayDuration = 2000;
+const delayDuration = 1000;
 
 let sequenceArray = [];
 
@@ -249,7 +249,7 @@ Promise.all([
             .enter()
             .append('text')
             .attr('class', 'valueLabel')
-            .attr('x', d => x(d.value)-8)
+            .attr('x', d => x(d.value)+5)
             .attr('y', d => y(max_value+1)+5+((y(1)-y(0))/2)+2)
             .text(d => d.value)
             .transition()
