@@ -1,0 +1,75 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.margin-top-50 {
+  margin-top: 50px;
+}
+
+.margin-bottom-50 {
+  margin-bottom: 50px;
+}
+
+svg{
+  border: none;
+}
+text{
+ font-size: 16px;
+ font-family: sans-serif;
+}
+text.title{
+  text-transform: uppercase;
+  font-size: 36px;
+  font-weight: 700;
+}
+text.subTitle{
+  font-size: 18px;
+  font-weight: 500;
+  fill: #000000;
+}
+text.legend{
+  font-weight: 400;
+  font-size: 15px;
+  fill: #000000;
+}
+text.caption{
+  font-weight: 400;
+  font-size: 10px;
+  fill: #777777;
+}
+text.label{
+  font-weight: 600;
+}
+text.rankLabel{
+  font-size: 18px;
+  font-weight: 300;
+}
+text.annotate{
+  font-size: 18px;
+  font-weight: 700;
+  fill: #c5a30b;  
+}
+text.dateText{
+  font-size: 32px;
+  font-weight: 700;
+  fill: #000000;
+}
+.tick text {
+  fill: #777777;
+}
+.xAxis .tick:nth-child(2) text {
+  text-anchor: start;
+}
+.tick line {
+  shape-rendering: CrispEdges;
+  stroke: #dddddd;
+}
+.tick line.origin{
+  stroke: #aaaaaa;
+}
+path.domain{
+  display: none;
+}
