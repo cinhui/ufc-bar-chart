@@ -262,6 +262,7 @@ Promise.all([
             .transition()
             .duration(tickDuration)
             .ease(d3.easeLinear)
+            .text(d => d.value)
             .attr('x', d => x(d.value)+5)
             .attr('y', d => y(d.rank)+5+((y(1)-y(0))/2)+2)
    
