@@ -274,6 +274,7 @@ Promise.all([
             .attr('y', d => y(max_value+1)+5)
             .remove();
 
+         dateText.html(sequenceArray[sequence-1]);
          sequence++;
          if(sequence> sequenceEnd) ticker.stop();
       }, delayDuration);
