@@ -7,7 +7,7 @@ const delayDuration = 1000;
 let sequenceArray = [];
 
 const title = "Most Number of Wins";
-const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Recorded since UFC 28.";
+const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Records since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
