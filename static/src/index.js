@@ -150,7 +150,7 @@ svg.append("text")
 Promise.all([
    d3.csv("sequence.csv"),
    d3.csv("output_df.csv"),
-   d3.json("fighters.json")
+   d3.json("https://raw.githubusercontent.com/cinhui/ufc-bar-chart/master/fighters.json"),
    ])
    .then(function(data) {
 
