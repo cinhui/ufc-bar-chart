@@ -8,13 +8,14 @@ let sequenceArray = [];
 
 let option = "total";
 // let option = "wins";
-
 let title = "Most Number of Fights";
-let filename = "output_"+option+"_df.csv";
+let datafile = "output_"+option+"_df.csv";
 if(option == "wins"){
    title = "Most Number of Wins";
 }
-
+let sequencefile = "sequence-monthly.csv";
+// let fighterfile = "fighters.json";
+let fighterfile = "fighters-alt.json";
 
 const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Records since UFC 28.";
 
@@ -65,101 +66,46 @@ const from_top = 170;
 const x1 = 750
 const x2 = 770
 
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#efe350b2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Strawweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+2*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#f9b641b2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+2*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Flyweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+3*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#f68f46b2");
-svg.append("text")
-   .attr("class", "legend")   
-   .attr("x",x2).attr("y", from_top+3*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Bantamweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+4*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#de7065b2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+4*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Featherweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+5*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#b8627db2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+5*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Lightweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+6*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#90548bb2");
-svg.append("text")
-   .attr("class", "legend")   
-   .attr("x",x2).attr("y", from_top+6*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Welterweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+7*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#7e4e90b2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+7*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Middleweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+8*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#593d9cb2");
-svg.append("text")
-   .attr("class", "legend")   
-   .attr("x",x2).attr("y", from_top+8*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Light Heavyweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+9*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#253582b2");
-svg.append("text")
-   .attr("class", "legend")
-   .attr("x",x2).attr("y", from_top+9*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Heavyweight");
-svg.append("rect")
-   .attr("x",x1).attr("y", from_top+10*rect_offset)
-   .attr("width", rect_size).attr("height", rect_size)
-   .style("fill", "#5da25da5");
-svg.append("text")
-   .attr("class", "legend")   
-   .attr("x",x2).attr("y", from_top+10*rect_offset+12)
-   .attr("alignment-baseline","middle")
-   .text("Catchweight");
+
+var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 'Heavyweight', 'Catchweight']
+let colors = {
+   "Strawweight": "#AEC7E8",
+   "Flyweight": "#FFBB78",
+   "Bantamweight": "#98DF8A",
+   "Featherweight": "#FF9896",
+   "Lightweight": "#C5B0D5",
+   "Welterweight": "#C39C94",
+   "Middleweight": "#F7B6D2",
+   "Light Heavyweight": "#BCBD22",
+   "Heavyweight": "#17BECF",
+   "Catchweight": "#9EDAE5"
+}
+var size = 20
+svg.selectAll("legendcolors")
+  .data(keys)
+  .enter()
+  .append("rect")
+    .attr("x", x1)
+    .attr("y", function(d,i){ return from_top + i*(rect_offset+5)}) 
+    .attr("width", rect_size)
+    .attr("height", rect_size)
+    .style("fill", function(d){ return colors[d]})
+
+svg.selectAll("legendname")
+  .data(keys)
+  .enter()
+  .append("text")
+    .attr("x", x2)
+    .attr("y", function(d,i){ return from_top + i*(rect_offset+5) + (rect_offset/2)}) 
+    .style("fill", "#000000")
+    .text(function(d){ return d})
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
 
 Promise.all([
-   d3.csv("sequence.csv"),
-   d3.csv(filename),
-   d3.json("https://raw.githubusercontent.com/cinhui/ufc-bar-chart/master/fighters.json"),
+   d3.csv(sequencefile),
+   d3.csv(datafile),
+   d3.json("https://raw.githubusercontent.com/cinhui/ufc-bar-chart/master/"+ fighterfile),
    ])
    .then(function(data) {
 
