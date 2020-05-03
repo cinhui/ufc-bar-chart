@@ -218,7 +218,7 @@ Promise.all([
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
-         .range([margin.left, width-margin.right-150]);
+         .range([margin.left, width-margin.right-120]);
    
       let y = d3.scaleLinear()
          .domain([max_value, 0])
@@ -282,6 +282,7 @@ Promise.all([
       let ticker = d3.interval(e => {
    
          dateText.html(sequenceArray[sequence]);
+         // console.log(sequenceArray[sequence] + " " + sequence + " " + sequenceEnd)
          d3.selectAll(".annotate").style('visibility', 'visible');
          
          sequenceValue = _normalizeData();
@@ -391,7 +392,7 @@ Promise.all([
             .remove();
 
          sequence++;
-         if(sequence> sequenceEnd) ticker.stop();
+         if(sequence>= sequenceEnd) ticker.stop();
       }, delayDuration);
 
 })
