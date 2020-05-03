@@ -9,7 +9,7 @@ let sequenceArray = [];
 let option = "total";
 // let option = "wins";
 let title = "Most Number of Fights";
-let datafile = "output_"+option+"_df.csv";
+let datafile = "output_"+option+"_df-monthly.csv";
 if(option == "wins"){
    title = "Most Number of Wins";
 }
