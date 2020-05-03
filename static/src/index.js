@@ -227,7 +227,7 @@ Promise.all([
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
-         .range([margin.left, width-margin.right-120]);
+         .range([margin.left, width-margin.right-140]);
    
       let y = d3.scaleLinear()
          .domain([max_value, 0])
