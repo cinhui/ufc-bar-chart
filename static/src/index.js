@@ -14,7 +14,6 @@ if(option == "wins"){
    title = "Most Number of Wins";
 }
 let sequencefile = "sequence-monthly.csv";
-// let fighterfile = "fighters.json";
 let fighterfile = "fighters-alt.json";
 
 const subTitle = "482 Events. 5303 Matches. 1891 Fighters. Records since UFC 28.";
@@ -66,7 +65,9 @@ const from_top = 170;
 const x1 = 750
 const x2 = 770
 
-var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 'Heavyweight', 'Catchweight']
+var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 
+   'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 
+   'Heavyweight', 'Catchweight', 'Women\'s']
 var colors = {
    "Strawweight": "#AEC7E8",
    "Flyweight": "#FFBB78",
@@ -77,7 +78,8 @@ var colors = {
    "Middleweight": "#F7B6D2",
    "Light Heavyweight": "#BCBD22",
    "Heavyweight": "#17BECF",
-   "Catchweight": "#9EDAE5"
+   "Catchweight": "#9EDAE5",
+   "Women's": "#59A14F"
 }
 var size = 20
 svg.selectAll("legendcolors")
