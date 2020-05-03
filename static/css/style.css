@@ -53,8 +53,13 @@ text.annotate{
   fill: #c5a30b;  
 }
 text.dateText{
-  font-size: 32px;
+  font-size: 16px;
   font-weight: 700;
+  fill: #000000;
+}
+text.eventTitleText{
+  font-size: 14px;
+  font-weight: 400;
   fill: #000000;
 }
 .tick text {

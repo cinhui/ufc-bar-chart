@@ -5,18 +5,21 @@ const tickDuration  = 700;
 const delayDuration = 1000;
 
 let sequenceArray = [];
+let eventArray1 = [];
+let eventArray2 = [];
 
 let option = "total";
 // let option = "wins";
 let title = "Most Number of Fights";
-let datafile = "output_"+option+"_df-monthly.csv";
+let datafile = "output_"+option+"_df.csv";
 if(option == "wins"){
    title = "Most Number of Wins";
 }
-let sequencefile = "sequence-monthly.csv";
+let sequencefile = "sequence.csv";
 let fighterfile = "fighters-alt.json";
 
-const subTitle = "482 Events. 5303 Matches. 1891 Fighters. Records since UFC 28.";
+const subTitle = "482 Events. 5303 Matches. 1891 Fighters.";
+const subTitle2 = "Since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
@@ -60,7 +63,7 @@ svg.append("text")
 // Add color legend
 const rect_size = 15
 const rect_offset = 20
-const from_top = 170;
+const from_top = 180;
 
 const x1 = 750
 const x2 = 770
@@ -112,6 +115,8 @@ Promise.all([
 
       data[0].forEach(d => {
          sequenceArray.push(d.date_formatted)
+         eventArray1.push(d.event1)
+         eventArray2.push(d.event2)
       })
 
       const sequenceStart     = 0;
@@ -135,7 +140,7 @@ Promise.all([
 
       let lastValues = {};
    
-      function _normalizeData(){
+      function computeDataSlice(){
          const values = {};
    
          const ret = [];
@@ -168,17 +173,17 @@ Promise.all([
          return ret.sort((a,b) => b.value - a.value).slice(0, max_value);
       }
    
-      let sequenceValue = _normalizeData();
+      let sequenceValue = computeDataSlice();
       sequenceValue.forEach((d,i) => d.rank = i);
 
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
-         .range([margin.left, width-margin.right-140]);
+         .range([margin.left, width-margin.right-160]);
    
       let y = d3.scaleLinear()
          .domain([max_value, 0])
-         .range([height-margin.bottom, margin.top]);
+         .range([height-margin.bottom, 1.5*margin.top]);
    
       let xAxis = d3.axisTop()
          .scale(x)
@@ -197,12 +202,25 @@ Promise.all([
 
       let dateText = svg.append('text')
          .attr('class', 'dateText')
-         .attr('x', width-margin.right)
-         .attr('y', 45)
-         .style('text-anchor', 'end');
+         .attr('x', width-margin.right-350)
+         .attr('y', 70)
+         .style('text-anchor', 'begin');
       
+      let eventText1 = svg.append('text')
+         .attr('class', 'eventTitleText')
+         .attr('x', width-margin.right-350)
+         .attr('y', 90)
+         .style('text-anchor', 'begin');
+      let eventText2 = svg.append('text')
+         .attr('class', 'eventTitleText')
+         .attr('x', width-margin.right-350)
+         .attr('y', 110)
+         .style('text-anchor', 'begin');
+
       // console.log(sequenceValue)
       dateText.html(sequenceArray[sequence]);
+      eventText1.html(eventArray1[sequence]);
+      eventText2.html(eventArray2[sequence]);
 
       svg.selectAll('rect.bar')
          .data(sequenceValue, d => d.name)
@@ -238,10 +256,13 @@ Promise.all([
       let ticker = d3.interval(e => {
    
          dateText.html(sequenceArray[sequence]);
+         eventText1.html(eventArray1[sequence]);
+         eventText2.html(eventArray2[sequence]);
+
          // console.log(sequenceArray[sequence] + " " + sequence + " " + sequenceEnd)
          d3.selectAll(".annotate").style('visibility', 'visible');
          
-         sequenceValue = _normalizeData();
+         sequenceValue = computeDataSlice();
          sequenceValue.forEach((d,i) => d.rank = i);
          x.domain([0, d3.max(sequenceValue, d => d.value)]); 
    
