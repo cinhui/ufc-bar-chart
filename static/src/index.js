@@ -66,9 +66,8 @@ const from_top = 170;
 const x1 = 750
 const x2 = 770
 
-
 var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 'Heavyweight', 'Catchweight']
-let colors = {
+var colors = {
    "Strawweight": "#AEC7E8",
    "Flyweight": "#FFBB78",
    "Bantamweight": "#98DF8A",
