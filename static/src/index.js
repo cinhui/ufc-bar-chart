@@ -17,7 +17,7 @@ let sequencefile = "sequence-monthly.csv";
 // let fighterfile = "fighters.json";
 let fighterfile = "fighters-alt.json";
 
-const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Records since UFC 28.";
+const subTitle = "482 Events. 5303 Matches. 1891 Fighters. Records since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
