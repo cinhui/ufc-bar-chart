@@ -6,7 +6,15 @@ const delayDuration = 1000;
 
 let sequenceArray = [];
 
-const title = "Most Number of Wins";
+let option = "total"; //or total
+
+let title = "Most Number of Fights";
+let filename = "output_"+option+"_df.csv";
+if(option == "wins"){
+   title = "Most Number of Wins";
+}
+
+
 const subTitle = "482 Events. 5307 Matches. 1891 Fighters. Records since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
@@ -149,7 +157,7 @@ svg.append("text")
 
 Promise.all([
    d3.csv("sequence.csv"),
-   d3.csv("output_df.csv"),
+   d3.csv(filename),
    d3.json("https://raw.githubusercontent.com/cinhui/ufc-bar-chart/master/fighters.json"),
    ])
    .then(function(data) {
