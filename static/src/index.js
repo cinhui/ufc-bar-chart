@@ -6,7 +6,8 @@ const delayDuration = 1000;
 
 let sequenceArray = [];
 
-let option = "total"; //or total
+let option = "total";
+// let option = "wins";
 
 let title = "Most Number of Fights";
 let filename = "output_"+option+"_df.csv";
