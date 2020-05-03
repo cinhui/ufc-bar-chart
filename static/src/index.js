@@ -48,9 +48,109 @@ svg.append("text")
    .attr('y', height-4)
    .html("https://www.sherdog.com");
 
+// Add color legend
+const rect_size = 15
+const rect_offset = 20
+const from_top = 170;
+
+const x1 = 750
+const x2 = 770
+
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#efe350b2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Strawweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+2*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#f9b641b2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+2*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Flyweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+3*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#f68f46b2");
+svg.append("text")
+   .attr("class", "legend")   
+   .attr("x",x2).attr("y", from_top+3*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Bantamweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+4*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#de7065b2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+4*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Featherweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+5*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#b8627db2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+5*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Lightweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+6*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#90548bb2");
+svg.append("text")
+   .attr("class", "legend")   
+   .attr("x",x2).attr("y", from_top+6*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Welterweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+7*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#7e4e90b2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+7*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Middleweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+8*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#593d9cb2");
+svg.append("text")
+   .attr("class", "legend")   
+   .attr("x",x2).attr("y", from_top+8*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Light Heavyweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+9*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#253582b2");
+svg.append("text")
+   .attr("class", "legend")
+   .attr("x",x2).attr("y", from_top+9*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Heavyweight");
+svg.append("rect")
+   .attr("x",x1).attr("y", from_top+10*rect_offset)
+   .attr("width", rect_size).attr("height", rect_size)
+   .style("fill", "#5da25da5");
+svg.append("text")
+   .attr("class", "legend")   
+   .attr("x",x2).attr("y", from_top+10*rect_offset+12)
+   .attr("alignment-baseline","middle")
+   .text("Catchweight");
+
 Promise.all([
    d3.csv("sequence.csv"),
    d3.csv("output_df.csv"),
+   d3.json("fighters.json")
    ])
    .then(function(data) {
 
@@ -64,9 +164,17 @@ Promise.all([
 
       // console.log(sequenceArray)
 
-      // Assign random colors to each fighter
+      let fighters = {};
+      data[2].forEach( d => {
+         fighters[d.fighter] = d.bar_color
+      });
+
+      // console.log(fighters)
+
+      // Assign colors to each 
       data[1].forEach( d => {
-         d.color = d3.hsl(Math.random()*360,1,0.5);
+         // d.color = d3.hsl(Math.random()*360,1,0.5);
+         d.color = fighters[d["fighter"]]
       });
 
       let lastValues = {};
@@ -110,7 +218,7 @@ Promise.all([
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
-         .range([margin.left, width-margin.right-65]);
+         .range([margin.left, width-margin.right-150]);
    
       let y = d3.scaleLinear()
          .domain([max_value, 0])
