@@ -365,7 +365,7 @@ Promise.all([
                .attr('class', 'valueLabel')
                .attr('x', d => x(d.value)+5)
                .attr('y', d => y(max_value+1)+((y(1)-y(0))/2)+13)
-               .text(d => d.value)
+               .text(d => {if(d.value > 0) {return d.value} else { return "" }})
                .transition()
                .duration(tickDuration)
                .ease(d3.easeLinear)
