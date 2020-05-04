@@ -8,13 +8,11 @@ let sequenceArray = [];
 let eventArray1 = [];
 let eventArray2 = [];
 
-let option = "total";
-// let option = "wins";
 let title = "Most Number of Fights";
-let datafile = "output_"+option+"_df.csv";
-if(option == "wins"){
-   title = "Most Number of Wins";
-}
+let datafile = "output_total_df.csv";
+// let title = "Most Number of Wins";
+// let datafile = "output_wins_df.csv";
+
 let sequencefile = "sequence.csv";
 let fighterfile = "fighters-alt.json";
 
