@@ -173,6 +173,7 @@ Promise.all([
                .on("start.interrupt", function() { slider.interrupt(); })
                .on("start drag", function() {
                   currentValue = d3.event.x;
+                  currentValue = d3.max([0,currentValue]);
                   updateSlider(xslider.invert(currentValue)); 
                   updateChart(xslider.invert(currentValue));
                })
@@ -189,13 +190,14 @@ Promise.all([
       var label = slider.append("text")  
             .attr("class", "slider")
             .attr("text-anchor", "middle")
-            .text((sequenceArray[d3.format(".0f")(startDate)]))
+            .text((sequenceArray[Math.floor(startDate)]))
             .attr("transform", "translate(15," + (-15) + ")");
 
       function updateSlider(h) {
+         // console.log(h + " " + Math.floor(h))
          handle.attr("cx", xslider(h));
          label.attr("x", xslider(h))
-               .text(sequenceArray[d3.format(".0f")(h)]);
+               .text(sequenceArray[Math.floor(h)]);
       }
 
       function computeDataSlice(sequence){
@@ -391,6 +393,7 @@ Promise.all([
       playButton
          .on("click", function() {
             var button = d3.select(this);
+            // console.log(currentValue)
             if (button.text() == "Pause") {
                moving = false;
                clearInterval(timer);
