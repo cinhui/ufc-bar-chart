@@ -66,9 +66,12 @@ const from_top = 180;
 const x1 = 750
 const x2 = 770
 
-var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 
+// var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 
+//    'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 
+//    'Heavyweight', 'Catchweight', 'Women\'s']
+var keys = ['Featherweight', 
    'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 
-   'Heavyweight', 'Catchweight', 'Women\'s']
+   'Heavyweight']
 var colors = {
    "Strawweight": "#AEC7E8",
    "Flyweight": "#FFBB78",
