@@ -369,7 +369,7 @@ Promise.all([
             .attr('y', d => y(max_value)+5)
             .remove();
 
-         if(sequence < 1 & delay < 5){
+         if(sequence < 1 & delay < 10){
             delay++;
          } else {
             sequence++;
