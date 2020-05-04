@@ -253,6 +253,10 @@ Promise.all([
          .text(d => { if(d.lastValue > 0) {return d.lastValue} else { return "" }})
 
    
+      var t = d3.timer(function(elapsed) {
+            if (elapsed > 2000) t.stop();
+      }, 20);
+
       let ticker = d3.interval(e => {
    
          dateText.html(sequenceArray[sequence]);

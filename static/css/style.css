@@ -32,7 +32,7 @@ text.subTitle{
 }
 text.legend{
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   fill: #000000;
 }
 text.caption{
@@ -62,6 +62,11 @@ text.eventTitleText{
   font-weight: 400;
   fill: #000000;
 }
+text.slider{
+  font-weight: 400;
+  font-size: 12px;
+  fill: #000000;
+}
 .tick text {
   fill: #777777;
 }
@@ -77,4 +82,53 @@ text.eventTitleText{
 }
 path.domain{
   display: none;
+}
+#button {
+  position: absolute;
+  top: 680px;
+  left: 100px;
+  background: #3b3939;
+  border-radius: 2px;
+  border: none;
+  color: white;
+  font-size: 12px;
+  padding: 2px 8px;
+  width: 60px;
+  cursor: pointer;
+  height: 30px;
+}
+
+#button:hover {
+  background-color: #696969;
+}    
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #dcdcdc;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
 }
