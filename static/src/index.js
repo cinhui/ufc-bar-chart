@@ -164,7 +164,7 @@ Promise.all([
          //    console.log(val)
             values[name] = val;
          });
-         
+
          lastValues = values;
    
          return ret.sort((a,b) => b.value - a.value).slice(0, max_value);
