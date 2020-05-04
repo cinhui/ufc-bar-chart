@@ -72,7 +72,7 @@ const x2 = 770
 // var keys = ['Strawweight', 'Flyweight', 'Bantamweight', 'Featherweight', 
 //    'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 
 //    'Heavyweight', 'Catchweight', 'Women\'s']
-var keys = ['Flyweight', 'Featherweight', 
+var keys = ['Featherweight', 
    'Lightweight', 'Welterweight', 'Middleweight', 'Light Heavyweight', 
    'Heavyweight']
 var colors = {
@@ -179,7 +179,9 @@ Promise.all([
    
       let sequenceValue = computeDataSlice();
       sequenceValue.forEach((d,i) => d.rank = i);
-
+      
+      // sequenceValue.forEach(d => {if (d.color == "#F7B6D2"){ console.log(d.name)} })
+      sequenceValue.forEach(d => {if (d.color == "#FFBB78"){ console.log(d.name)} })
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
