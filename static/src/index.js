@@ -252,10 +252,7 @@ Promise.all([
          .attr('y', d => y(d.rank)+((y(1)-y(0))/2)+13)
          .text(d => { if(d.lastValue > 0) {return d.lastValue} else { return "" }})
 
-   
-      var t = d3.timer(function(elapsed) {
-            if (elapsed > 2000) t.stop();
-      }, 20);
+      var delay = 0;
 
       let ticker = d3.interval(e => {
    
@@ -372,7 +369,11 @@ Promise.all([
             .attr('y', d => y(max_value)+5)
             .remove();
 
-         sequence++;
+         if(sequence < 1 & delay < 5){
+            delay++;
+         } else {
+            sequence++;
+         }
          if(sequence>= sequenceEnd) ticker.stop();
       }, delayDuration);
 
