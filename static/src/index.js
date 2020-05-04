@@ -384,10 +384,9 @@ Promise.all([
          if(sequence>= sequenceEnd) ticker.stop();
       }, delayDuration);
 
+}).catch(function(err) {
+   // handle error here
+   console.log("error")
 })
-// .catch(function(err) {
-//    // handle error here
-//    console.log("error")
-// })
 
 

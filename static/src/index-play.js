@@ -292,7 +292,7 @@ Promise.all([
 
       function updateChart(h){
       
-            sequence = d3.format(".0f")(h)
+            sequence = Math.floor(h)
             dateText.html(sequenceArray[sequence]);
             eventText1.html(eventArray1[sequence]);
             eventText2.html(eventArray2[sequence]);
@@ -414,10 +414,13 @@ Promise.all([
               moving = false;
               currentValue = 0;
               clearInterval(timer);
-              playButton.text("Play");
+              playButton.text("Start");
             }
           }
 
+}).catch(function(err) {
+   // handle error here
+   console.log("error")
 })
 
 
