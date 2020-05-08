@@ -9,15 +9,17 @@ let eventArray1 = [];
 let eventArray2 = [];
 
 // Defined in index.html
-// let title = "Most Number of Fights";
+// let title = "Total UFC Fights";
 // let datafile = "output_total_df.csv";
+// let title = "Total UFC Wins";
+// let datafile = "output_wins_df.csv";
 
 let sequencefile = "sequence.csv";
 let fighterfile = "fighters-alt.json";
 
 const subTitle = "482 Events. 5303 Matches. 1891 Fighters.";
 // const subTitle = "483 Events. 5315 Matches. 1891 Fighters.";
-// const subTitle2 = "Since UFC 28.";
+const subTitle2 = "Since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
@@ -42,10 +44,10 @@ svg.append("text")
    .attr("class", "subTitle")
    .attr("y", 75)
    .html( subTitle );
-// svg.append("text")
-//    .attr("class", "subTitle")
-//    .attr("y", 95)
-//    .html( subTitle2 );
+svg.append("text")
+   .attr("class", "subTitle")
+   .attr("y", 95)
+   .html( subTitle2 );
 svg.append("text")
    .attr("class", "caption")
    .attr("x", 10)

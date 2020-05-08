@@ -8,9 +8,9 @@ let sequenceArray = [];
 let eventArray1 = [];
 let eventArray2 = [];
 
-let title = "Most Number of Fights";
+let title = "Total UFC Fights";
 let datafile = "output_total_df.csv";
-// let title = "Most Number of Wins";
+// let title = "Total UFC Wins";
 // let datafile = "output_wins_df.csv";
 
 let sequencefile = "sequence.csv";
