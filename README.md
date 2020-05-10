@@ -1,6 +1,6 @@
 # ufc-bar-chart
 
-Data in the charts is up to date as of May 9, 2020. 
+Data in the charts are up to date as of May 9, 2020. 
 
 https://cinhui.github.io/ufc-bar-chart/
 
