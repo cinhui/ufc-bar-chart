@@ -1,5 +1,5 @@
 const height = 600;
-const width = 900;
+const width = 1200;
 
 const tickDuration  = 700;
 const delayDuration = 1000;
@@ -185,7 +185,7 @@ Promise.all([
       // Format axes
       let x = d3.scaleLinear()
          .domain([0, d3.max(sequenceValue, d => d.value)])
-         .range([margin.left, width-margin.right-160]);
+         .range([margin.left, width-300-margin.right-160]);
    
       let y = d3.scaleLinear()
          .domain([max_value, 0])
@@ -216,13 +216,17 @@ Promise.all([
       
       let eventText1 = svg.append('text')
          .attr('class', 'eventTitleText')
-         .attr('x', width-margin.right-350)
-         .attr('y', 90)
+         // .attr('x', width-margin.right-350)
+         // .attr('y', 90)
+         .attr('x', x1)
+         .attr('y', function(d,i){ return 2*from_top + 3*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
       let eventText2 = svg.append('text')
          .attr('class', 'eventTitleText')
-         .attr('x', width-margin.right-350)
-         .attr('y', 110)
+         // .attr('x', width-margin.right-350)
+         // .attr('y', 110)
+         .attr('x', x1)
+         .attr('y', function(d,i){ return 2*from_top + 4*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
 
       // console.log(sequenceValue)
