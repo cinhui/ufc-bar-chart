@@ -241,8 +241,10 @@ Promise.all([
       
       let dateText = svg.append('text')
          .attr('class', 'dateText')
-         .attr('x', width-margin.right-350)
-         .attr('y', 70)
+         // .attr('x', width-margin.right-350)
+         // .attr('y', 70)
+         .attr('x', x1)
+         .attr('y', function(d,i){ return 2*from_top + 2*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
       
       let eventText1 = svg.append('text')
