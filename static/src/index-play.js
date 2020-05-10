@@ -16,7 +16,8 @@ let datafile = "output_total_df.csv";
 let sequencefile = "sequence.csv";
 let fighterfile = "fighters-alt.json";
 
-const subTitle = "482 Events. 5303 Matches. 1891 Fighters.";
+// const subTitle = "482 Events. 5303 Matches. 1890 Fighters.";
+const subTitle = "483 Events. 5314 Matches. 1890 Fighters."; 
 const subTitle2 = "Since UFC 28.";
 
 const svg = d3.select("#bar-chart").append("svg")
