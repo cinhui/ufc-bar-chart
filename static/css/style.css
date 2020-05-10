@@ -3,7 +3,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
 }
 
 .margin-top-50 {
@@ -23,12 +23,13 @@ text{
 }
 text.title{
   text-transform: uppercase;
-  font-family: Helvetica;
-  font-size: 36px;
+  font-family: 'Helvetica Neue';
+  font-size: 48px;
   font-weight: 700;
 }
 text.subTitle{
-  font-size: 18px;
+  font-family: 'Helvetica Neue';
+  font-size: 28px;
   font-weight: 500;
   fill: #000000;
 }

@@ -11,15 +11,16 @@ let eventArray2 = [];
 // Defined in index.html
 // let title = "Total UFC Fights";
 // let datafile = "output_total_df.csv";
+// let subTitle = "Individuals with the most UFC fights.";
 // let title = "Total UFC Wins";
 // let datafile = "output_wins_df.csv";
+// let subTitle = "Individuals with the most UFC wins.";
 
 let sequencefile = "sequence.csv";
 let fighterfile = "fighters-alt.json";
 
 // const subTitle = "482 Events. 5303 Matches. 1890 Fighters.";
-const subTitle = "483 Events. 5314 Matches. 1890 Fighters."; 
-const subTitle2 = "Since UFC 28.";
+// const subTitle = "483 Events. 5314 Matches. 1890 Fighters."; 
 
 const svg = d3.select("#bar-chart").append("svg")
    .attr("width", width)
@@ -42,12 +43,8 @@ svg.append('text')
    .html(title);
 svg.append("text")
    .attr("class", "subTitle")
-   .attr("y", 75)
+   .attr("y", 85)
    .html( subTitle );
-svg.append("text")
-   .attr("class", "subTitle")
-   .attr("y", 95)
-   .html( subTitle2 );
 svg.append("text")
    .attr("class", "caption")
    .attr("x", 10)
@@ -211,8 +208,10 @@ Promise.all([
 
       let dateText = svg.append('text')
          .attr('class', 'dateText')
-         .attr('x', width-margin.right-350)
-         .attr('y', 70)
+         // .attr('x', width-margin.right-350)
+         // .attr('y', 70)
+         .attr('x', x1)
+         .attr('y', function(d,i){ return 2*from_top + 2*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
       
       let eventText1 = svg.append('text')
