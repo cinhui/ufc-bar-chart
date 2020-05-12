@@ -64,7 +64,7 @@ svg.append("text")
 // Add color legend
 const rect_size = 15
 const rect_offset = 20
-const from_top = 180;
+const from_top = 140;
 
 const x1 = 750
 const x2 = 770
@@ -94,7 +94,7 @@ svg.selectAll("legendcolors")
   .enter()
   .append("rect")
     .attr("x", x1)
-    .attr("y", function(d,i){ return from_top + i*(rect_offset+5)}) 
+    .attr("y", function(d,i){ return 2*from_top + i*(rect_offset+5)}) 
     .attr("width", rect_size)
     .attr("height", rect_size)
     .style("fill", function(d){ return colors[d]})
@@ -105,7 +105,7 @@ svg.selectAll("legendname")
   .append("text")
   .attr("class","legend")
     .attr("x", x2)
-    .attr("y", function(d,i){ return from_top + i*(rect_offset+5) + (rect_offset/2)}) 
+    .attr("y", function(d,i){ return 2*from_top + i*(rect_offset+5) + (rect_offset/2)}) 
     .style("fill", "#000000")
     .text(function(d){ return d})
     .attr("text-anchor", "left")
@@ -246,7 +246,7 @@ Promise.all([
          // .attr('x', width-margin.right-350)
          // .attr('y', 70)
          .attr('x', x1)
-         .attr('y', function(d,i){ return 2*from_top + 2*(rect_offset+5) + (rect_offset/2)})
+         .attr('y', function(d,i){ return from_top + 2*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
       
       let eventText1 = svg.append('text')
@@ -254,14 +254,14 @@ Promise.all([
          // .attr('x', width-margin.right-350)
          // .attr('y', 90)
          .attr('x', x1)
-         .attr('y', function(d,i){ return 2*from_top + 3*(rect_offset+5) + (rect_offset/2)})
+         .attr('y', function(d,i){ return from_top + 3*(rect_offset+5) + (rect_offset/2)})
          .style('text-anchor', 'begin');
       let eventText2 = svg.append('text')
          .attr('class', 'eventTitleText')
          // .attr('x', width-margin.right-350)
          // .attr('y', 90)
          .attr('x', x1)
-         .attr('y', function(d,i){ return 2*from_top + 4*(rect_offset+5) + (rect_offset/2)})
+         .attr('y', function(d,i){ return from_top + 4*(rect_offset+5) + (rect_offset/2)})
         .style('text-anchor', 'begin');
 
       // console.log(sequenceValue)
